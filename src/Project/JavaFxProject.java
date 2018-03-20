@@ -24,11 +24,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
-
 import javafx.util.Duration;
 
 public class JavaFxProject extends Application {
-	
 	
 	/* Main method
 	 * Description: The program's entry point
@@ -46,56 +44,154 @@ public class JavaFxProject extends Application {
 		/* Object declaration section */
 		String welcomeMsg = "Welcome To\nAustin Atteberry's JavaFx Project";
 		String courseMsg = "CS 1302\nSection 09\nInstructor Carlos A. Cepeda";
-		Text welcomeDisplay = new Text(10, 35, "");
-		Text courseDisplay = new Text(10, 150, "");
-		
-		/* Create a pane */
-		Pane homePane = new Pane();
-		
-		/* Display welcome message */
-		WelcomeMessage(homePane, welcomeMsg, welcomeDisplay, courseMsg, courseDisplay);
+		Text welcomeDisplay = new Text(20, 35, "");
+		Text courseDisplay = new Text(20, 150, "");
 		
 		/* Create Buttons */
-		Button btHome = NewButton("btHome.png", "btHomeActive.png", 10, 450);
-		Button btAuthors = NewButton("btAuthors.png", "btAuthorsActive.png", 165, 450);
-		Button btGames = NewButton("btGames.png", "btGamesActive.png", 382, 450);
+		Button btHome0 = NewButton("btHome.png", "btHomeActive.png", 20, 500);
+		Button btHome1 = NewButton("btHome.png", "btHomeActive.png", 20, 500);
+		Button btHome2 = NewButton("btHome.png", "btHomeActive.png", 20, 500);
+		Button btHomeActive = NewActiveButton("btHomeActive.png", 20, 500);
+		Button btAuthors0 = NewButton("btAuthors.png", "btAuthorsActive.png", 185, 500);
+		Button btAuthors1 = NewButton("btAuthors.png", "btAuthorsActive.png", 185, 500);
+		Button btAuthors2 = NewButton("btAuthors.png", "btAuthorsActive.png", 185, 500);
+		Button btAuthorsActive = NewActiveButton("btAuthorsActive.png", 185, 500);
+		Button btGames0 = NewButton("btGames.png", "btGamesActive.png", 412, 500);
+		Button btGames1 = NewButton("btGames.png", "btGamesActive.png", 412, 500);
+		Button btGames2 = NewButton("btGames.png", "btGamesActive.png", 412, 500);
+		Button btGamesActive = NewActiveButton("btGamesActive.png", 412, 500);
+		
+		/* Create panes */
+		Pane welcomePane = new Pane();
+		Pane homePane = new Pane();
+		Pane authorsPane = new Pane();
+		Pane gamesPane = new Pane();
+		
+		/* Set stage attributes */
+		primaryStage.setHeight(650);
+		primaryStage.setWidth(650);
+		primaryStage.setResizable(false);
+		primaryStage.getIcons().add(new Image("/icon/icon.gif"));
+		
+		welcomePane.getChildren().addAll(welcomeDisplay, courseDisplay, btHome0, btAuthors0, btGames0);
+		homePane.getChildren().addAll(btHomeActive, btAuthors1, btGames1);
+		authorsPane.getChildren().addAll(btHome1, btAuthorsActive, btGames2);
+		gamesPane.getChildren().addAll(btHome2, btAuthors2, btGamesActive);
+		
+		/* Create scenes */
+		Scene welcomeView = new Scene(welcomePane);
+		Scene homeView = new Scene(homePane);
+		Scene authorsView = new Scene(authorsPane);
+		Scene gamesView = new Scene(gamesPane);
+		
+		primaryStage.setTitle("JavaFx Project: Welcome");
+		primaryStage.setScene(welcomeView);
+		primaryStage.show();
+		
+		/* Display welcome message */
+		WelcomeMessage(welcomePane, welcomeMsg, welcomeDisplay, courseMsg, courseDisplay);
+		
+		
 		
 		/* Create home button action */
-		btHome.setOnAction(new EventHandler<ActionEvent>() {
+		btHome0.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				WelcomeMessage(homePane, welcomeMsg, welcomeDisplay, courseMsg, courseDisplay);
+				
+				
+				/* Set stage attributes */
+				primaryStage.setTitle("JavaFx Project: Home");
+				primaryStage.setScene(homeView);
+			}
+		});
+		btHome1.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				
+				
+				/* Set stage attributes */
+				primaryStage.setTitle("JavaFx Project: Home");
+				primaryStage.setScene(homeView);
+			}
+		});
+		btHome2.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				
+				
+				/* Set stage attributes */
+				primaryStage.setTitle("JavaFx Project: Home");
+				primaryStage.setScene(homeView);
 			}
 		});
 		
-		/* Add objects to home page */
-		homePane.getChildren().add(btHome);
-		homePane.getChildren().add(btAuthors);
-		homePane.getChildren().add(btGames);
-		homePane.getChildren().add(welcomeDisplay);
+		/* Create authors button action */
+		btAuthors0.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				
+				/* Set stage attributes */
+				primaryStage.setTitle("JavaFx Project: Authors");
+				primaryStage.setScene(authorsView);
+			}
+		});
+		btAuthors1.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				
+				/* Set stage attributes */
+				primaryStage.setTitle("JavaFx Project: Authors");
+				primaryStage.setScene(authorsView);
+			}
+		});
+		btAuthors2.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				
+				/* Set stage attributes */
+				primaryStage.setTitle("JavaFx Project: Authors");
+				primaryStage.setScene(authorsView);
+			}
+		});
 		
-		/* Set stage attributes */
-		Scene homeView = new Scene(homePane);
-		primaryStage.setTitle("JavaFx Project");
-		primaryStage.setScene(homeView);
-		primaryStage.setHeight(600);
-		primaryStage.setWidth(600);
-		primaryStage.setResizable(false);
-		primaryStage.getIcons().add(new Image("/icon/icon.gif"));
-		primaryStage.show();
+		/* Create games button action */
+		btGames0.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				
+				/* Set stage attributes */
+				primaryStage.setTitle("JavaFx Project: Games");
+				primaryStage.setScene(gamesView);
+			}
+		});
+		btGames1.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				
+				/* Set stage attributes */
+				primaryStage.setTitle("JavaFx Project: Games");
+				primaryStage.setScene(gamesView);
+			}
+		});
+		btGames2.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				
+				/* Set stage attributes */
+				primaryStage.setTitle("JavaFx Project: Games");
+				primaryStage.setScene(gamesView);
+			}
+		});
 	}
 	
 	
 	/* WelcomeMessage method
 	 * Description: Creates the welcome message animation
 	 */
-	public void WelcomeMessage(Pane homePane, String welcomeMsg, Text welcomeDisplay, String courseMsg, Text courseDisplay) {
+	public void WelcomeMessage(Pane welcomePane, String welcomeMsg, Text welcomeDisplay, String courseMsg, Text courseDisplay) {
 		/* Set welcome message font */
 		welcomeDisplay.setFont(Font.loadFont(JavaFxProject.class.getResource("/Fonts/arumsansextrabold.ttf").toExternalForm(), 40));
 		welcomeDisplay.setFill(Color.ORANGERED);
-		
-		/* Remove courseDisplay from Pane */
-		homePane.getChildren().remove(courseDisplay);
 		
 		/* Declare animation */
 		Animation writeMsg = new Transition() {
@@ -114,26 +210,17 @@ public class JavaFxProject extends Application {
 		writeMsg.setOnFinished(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				homePane.getChildren().add(courseDisplay);
-				CourseMessage(courseMsg, courseDisplay);
+				/* Set course information font */
+				courseDisplay.setFont(Font.loadFont(JavaFxProject.class.getResource("/Fonts/arumsansextrabold.ttf").toExternalForm(), 20));
+				courseDisplay.setFill(Color.ORANGERED);
+				
+				/* Display course information */
+				courseDisplay.setText(courseMsg);
 			}
 		});
 		
 		/* Display animation */
 		writeMsg.play();
-	}
-	
-	
-	/* CourseMessage method
-	 * Description: Displays the course information
-	 */
-	public void CourseMessage(String courseMsg, Text courseDisplay) {
-		/* Set course information font */
-		courseDisplay.setFont(Font.loadFont(JavaFxProject.class.getResource("/Fonts/arumsansextrabold.ttf").toExternalForm(), 20));
-		courseDisplay.setFill(Color.ORANGERED);
-		
-		/* Display course information */
-		courseDisplay.setText(courseMsg);
 	}
 	
 	
@@ -187,6 +274,26 @@ public class JavaFxProject extends Application {
 				btNew.setGraphic(new ImageView(normalButton));
 			}
 		});
+		
+		/* Return button */
+		return btNew;
+	}
+	
+	
+	/* NewActiveButton method
+	 * Description: Creates a button for the active pane
+	 */
+	public Button NewActiveButton(String active, int X, int Y) {
+		/* Create button image */
+		Image activeButton = new Image(getClass().getResourceAsStream("/Buttons/" + active));
+		
+		/* Set button properties */
+		Button btNew = new Button();
+		btNew.setStyle("-fx-border-width: 0; -fx-background-color: transparent;");
+		btNew.setGraphic(new ImageView(activeButton));
+		btNew.setPrefSize(activeButton.getWidth(), activeButton.getHeight());
+		btNew.setLayoutX(X);
+		btNew.setLayoutY(Y);
 		
 		/* Return button */
 		return btNew;
