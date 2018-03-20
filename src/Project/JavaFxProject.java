@@ -11,6 +11,7 @@ package Project;
 import javafx.application.Application;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
+import javafx.animation.FadeTransition;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
@@ -97,7 +98,8 @@ public class JavaFxProject extends Application {
 		btHome0.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				
+				/* Call method to create fade */
+				FadeToPane(homePane);
 				
 				/* Set stage attributes */
 				primaryStage.setTitle("JavaFx Project: Home");
@@ -107,7 +109,8 @@ public class JavaFxProject extends Application {
 		btHome1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				
+				/* Call method to create fade */
+				FadeToPane(homePane);
 				
 				/* Set stage attributes */
 				primaryStage.setTitle("JavaFx Project: Home");
@@ -117,7 +120,8 @@ public class JavaFxProject extends Application {
 		btHome2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				
+				/* Call method to create fade */
+				FadeToPane(homePane);
 				
 				/* Set stage attributes */
 				primaryStage.setTitle("JavaFx Project: Home");
@@ -129,6 +133,8 @@ public class JavaFxProject extends Application {
 		btAuthors0.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+				/* Call method to create fade */
+				FadeToPane(authorsPane);
 				
 				/* Set stage attributes */
 				primaryStage.setTitle("JavaFx Project: Authors");
@@ -138,6 +144,8 @@ public class JavaFxProject extends Application {
 		btAuthors1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+				/* Call method to create fade */
+				FadeToPane(authorsPane);
 				
 				/* Set stage attributes */
 				primaryStage.setTitle("JavaFx Project: Authors");
@@ -147,6 +155,8 @@ public class JavaFxProject extends Application {
 		btAuthors2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+				/* Call method to create fade */
+				FadeToPane(authorsPane);
 				
 				/* Set stage attributes */
 				primaryStage.setTitle("JavaFx Project: Authors");
@@ -158,6 +168,8 @@ public class JavaFxProject extends Application {
 		btGames0.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+				/* Call method to create fade */
+				FadeToPane(gamesPane);
 				
 				/* Set stage attributes */
 				primaryStage.setTitle("JavaFx Project: Games");
@@ -167,6 +179,8 @@ public class JavaFxProject extends Application {
 		btGames1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+				/* Call method to create fade */
+				FadeToPane(gamesPane);
 				
 				/* Set stage attributes */
 				primaryStage.setTitle("JavaFx Project: Games");
@@ -176,6 +190,8 @@ public class JavaFxProject extends Application {
 		btGames2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+				/* Call method to create fade */
+				FadeToPane(gamesPane);
 				
 				/* Set stage attributes */
 				primaryStage.setTitle("JavaFx Project: Games");
@@ -297,5 +313,19 @@ public class JavaFxProject extends Application {
 		
 		/* Return button */
 		return btNew;
+	}
+	
+	
+	/* FadeToPane method
+	 * Description: Creates a fade transition when loading a new pane
+	 */
+	public void FadeToPane(Pane pane) {
+		/* Create transition */
+		FadeTransition paneFade = new FadeTransition(Duration.millis(1000), pane);
+		paneFade.setFromValue(0);
+		paneFade.setToValue(1);
+		paneFade.setCycleCount(1);
+		paneFade.setAutoReverse(false);
+		paneFade.play();
 	}
 }
