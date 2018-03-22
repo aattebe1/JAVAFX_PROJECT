@@ -8,6 +8,7 @@
 
 package Project;
 
+import java.io.File;
 import javafx.application.Application;
 import MemoryMatchObject.MemoryMatch;
 import javafx.animation.Animation;
@@ -23,6 +24,7 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.Group;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.GridPane;
@@ -33,6 +35,9 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
@@ -77,6 +82,7 @@ public class JavaFxProject extends Application {
 		Text authorText2 = new Text(300, 94, authorContent);
 		Text gamesText1 = new Text(20, 45, gamesHeader);
 		Text gamesText2 = new Text(20, 80, gamesContent);
+		//File videoFile = new File("./About.mp4");
 		
 		String[] location = new String[12];
 
@@ -264,14 +270,22 @@ public class JavaFxProject extends Application {
 		ScrollPane memoryMatchScroll = new ScrollPane();
 		memoryMatchScroll.setContent(memoryMatchPane);
 		
+		/* Create a Group for video */
+		Group videoGroup = new Group();
+		
 		/* Create a game stage */
 		Stage gameStage = new Stage();
 		
-		/* Create a new Scene and place it one the game stage */
+		/* Create a video stage */
+		Stage videoStage = new Stage();
+		
+		/* Create a new Scene and place it on the game stage */
 		Scene memMatchScene = new Scene(memoryMatchScroll);
 		gameStage.setTitle("Memory Match");
 		gameStage.getIcons().add(new Image("/icon/matchbook.gif"));
 		gameStage.setScene(memMatchScene);
+		
+		
 		
 		/* Create home button action */
 		btHome0.setOnAction(new EventHandler<ActionEvent>() {
@@ -342,7 +356,30 @@ public class JavaFxProject extends Application {
 				primaryStage.setScene(authorsView);
 			}
 		});
-		
+		btVideo.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				try {
+					/* Create a new Scene and place it on the video stage */
+					Scene aboutScene = new Scene(videoGroup, 1280, 720);
+					videoStage.setTitle("About Me");
+					videoStage.setScene(aboutScene);
+					
+					/* Set up MediaPlayer */
+					Media authorsVideo = new Media(new File("bin/Video/About.mp4").toURI().toString());
+					MediaPlayer player = new MediaPlayer(authorsVideo);
+					player.setAutoPlay(true);
+					
+					/* Set up MediaView */
+					MediaView videoView = new MediaView(player);
+					((Group)aboutScene.getRoot()).getChildren().add(videoView);
+					
+					/* Open the video stage */
+					videoStage.show();
+				}
+				catch(java.lang.IllegalArgumentException ex) {}
+			}
+		});
 		/* Create games button action */
 		btGames0.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -380,19 +417,18 @@ public class JavaFxProject extends Application {
 		btLaunchGame.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				/*  */
+				/* Reset animation */
 				Reset(imageString, cardImages, cardBackImages, cardImageView, cardBackImageView, rotationPane,
 						preRotatedCard, rotateCard, rotateCardReverse, memoryMatchPane, memoryMatch);
 				
-				/*  */
+				/* Open the game stage */
 				gameStage.show();
 				
-				/*  */
+				/* Animate cards */
 				StartRotation(preRotatedCard);
 				CreateGameplayAnimation(flipCardToFront1, flipCardToFront2, cardBackImageView,  cardImageView);
 				EnableFlip(flipCardToFront1, cardBackImageView);
 				
-				/*  */
 				/*for(int i = 0; i < cardBackImageView.length; i++) {
 					for(int j = 0; j < cardBackImageView[i].length; j++) {
 						SetMouseClickedEvent(cardBackImageView[i][j], cardBackImageView, memoryMatch);
